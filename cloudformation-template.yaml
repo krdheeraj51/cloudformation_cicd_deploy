@@ -1,0 +1,27 @@
+Parameters:
+  InstanceType:
+    Type: String
+    Default: t2.micro
+
+Resources:
+  MyS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "github-deployment-bucket-${AWS::AccountId}"
+
+  MyEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: !Ref InstanceType
+      ImageId: !Ref AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
+      Tags:
+        - Key: "DeployedBy"
+          Value: "GitHubActions"
+
+Outputs:
+  BucketName:
+    Description: "S3 Bucket Created"
+    Value: !Ref MyS3Bucket
+  InstanceID:
+    Description: "EC2 Instance ID"
+    Value: !Ref MyEC2Instance
