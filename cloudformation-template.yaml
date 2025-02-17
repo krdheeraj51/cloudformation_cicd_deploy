@@ -13,7 +13,7 @@ Resources:
     Type: AWS::EC2::Instance
     Properties:
       InstanceType: !Ref InstanceType
-      ImageId: !Ref AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
+      ImageId: ami-085ad6ae776d8f09c
       Tags:
         - Key: "DeployedBy"
           Value: "GitHubActions"
