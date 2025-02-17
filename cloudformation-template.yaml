@@ -7,7 +7,7 @@ Resources:
   MyS3Bucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub "github-deployment-bucket-${AWS::AccountId}"
+      BucketName: !Sub "github-deployment-bucket001-${AWS::AccountId}"
 
   MyEC2Instance:
     Type: AWS::EC2::Instance
